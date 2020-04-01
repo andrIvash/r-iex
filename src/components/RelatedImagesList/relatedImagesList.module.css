@@ -1,0 +1,16 @@
+.container {
+  max-width: 60rem;
+  padding: 2rem;
+}
+
+.imageCard {
+ width: auto
+}
+
+.imageCard img {
+ height: auto;
+}
+
+h5.title {
+    font-family: var(--main-font);
+}

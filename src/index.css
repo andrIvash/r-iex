@@ -1,3 +1,10 @@
+:root {
+    --main-color: #242424;
+    --active-color: #377CFF;
+    --error-color: #FF6D69;
+    --main-font: Khand;
+}
+
 html, body {
-    font-family: Khand;
+    font-family: var(--main-font);
 }
