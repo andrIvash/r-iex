@@ -5,12 +5,12 @@ import CardList from '../../components/CardList/CardList';
 import SectionWithLoader from '../../hocs/SectionWithLoader';
 import { checkError, getPhotos } from '../../services';
 
-const BASE_SCROLL_CONTAINER_HEIGHT = '55rem';
+const BASE_SCROLL_CONTAINER_HEIGHT = '50rem';
 
 class Homepage extends PureComponent {
   state = {
     images: [],
-    page: 0,
+    page: 1,
     loading: false
   };
 
@@ -27,7 +27,8 @@ class Homepage extends PureComponent {
       }).then((result) => {
         this.setState((prevState) => ({
           images: [...prevState.images, ...result.data],
-          loading: false
+          loading: false,
+          page: prevState.page + 1
         }));
       }, (error) =>{
         checkError(error);
@@ -39,13 +40,10 @@ class Homepage extends PureComponent {
     })
   };
 
-  likeImage = () => {};
-
   render() {
-    const {images, loading, error} = this.state;
+    const {images, error} = this.state;
     return (
       <SectionWithLoader
-        loading={loading}
         error={error}
       >
         <Layout>
