@@ -10,8 +10,7 @@ const BASE_SCROLL_CONTAINER_HEIGHT = '50rem';
 class Homepage extends PureComponent {
   state = {
     images: [],
-    page: 1,
-    loading: false
+    page: 1
   };
 
   componentDidMount() {
@@ -19,23 +18,17 @@ class Homepage extends PureComponent {
   }
 
   fetchPhotos = () => {
-    this.setState({
-      loading: true
-    }, () => {
-      getPhotos({
-        page: this.state.page,
-      }).then((result) => {
-        this.setState((prevState) => ({
-          images: [...prevState.images, ...result.data],
-          loading: false,
-          page: prevState.page + 1
-        }));
-      }, (error) =>{
-        checkError(error);
-        this.setState({
-          error: error,
-          loading: false
-        })
+    getPhotos({
+      page: this.state.page,
+    }).then((result) => {
+      this.setState((prevState) => ({
+        images: [...prevState.images, ...result.data],
+        page: prevState.page + 1
+      }));
+    }, (error) =>{
+      checkError(error);
+      this.setState({
+        error: error
       })
     })
   };
